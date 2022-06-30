@@ -12,7 +12,7 @@ const App = () => {
   return (
     <div>
       {
-        items.map( item => <TodoItem name={item.name} key={item.id} /> )
+        items.map( item => <TodoItem name={item.name} status={item.status} key={item.id} /> )
       }
     </div>
   )
