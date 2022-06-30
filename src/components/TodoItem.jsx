@@ -1,6 +1,10 @@
-const TodoItem = () => {
+import TodoItemContainer from "./styled/TodoItemContainer.styled"
+
+const TodoItem = ({ name }) => {
   return (
-    <div>TodoItem</div>
+    <TodoItemContainer>
+      <p>{ name }</p>
+    </TodoItemContainer>
   )
 }
 
