@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
 
-function App() {
+import TodoItem from './components/TodoItem';
+
+const App = () => {
+  const initialItems = [
+    { id: 1, name: "Wake up", status: "pending" }
+  ];
+
+  const [ items, setItems ] = useState( initialItems );
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {
+        items.map( item => <TodoItem name={item.name} status={item.status} key={item.id} /> )
+      }
     </div>
-  );
+  )
 }
 
 export default App;
