@@ -1,28 +1,25 @@
 import styled, { css } from 'styled-components';
 
 const TodoItemContainer = styled.div`
-    padding: 4px;
+    padding: 8px 16px;
 
     border: 1px solid lightgrey;
     border-radius: 8px;
 
     display: flex;
     flex-direction: column;
-    width: fit-content;
+    width: 10rem;
+    min-width: fit-content;
 
     > p {
         font-weight: 600;
         font-size: 18px;
     }
 
-    .action-btns{
+    .action-btn{
         display: flex;
         justify-content: flex-end;
     }
-
-    ${ props => props.status === 'pending' ? css`border-color: red` : css` border-color: blue `}
-
-    
 
 `;
 

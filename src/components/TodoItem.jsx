@@ -6,8 +6,8 @@ const TodoItem = ({ name, status }) => {
     <TodoItemContainer status={ status }>
       <p>{ name }</p>
       <div className='action-btn'>
-        <Button>Done</Button>
-        <Button>Delete</Button>
+        <Button success>Done</Button>
+        <Button danger>Delete</Button>
       </div>
     </TodoItemContainer>
   )
