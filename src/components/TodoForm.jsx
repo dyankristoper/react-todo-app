@@ -1,6 +1,61 @@
-const TodoForm = () => {
+import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+
+import InputStyled from "./styled/Input.styled";
+import Button from "./styled/Button.styled";
+
+const TodoForm = ({ tasks, dispatch }) => {
+  const [ task, setTask ] = useState('');
+  const [ error, setError ] = useState('');
+
+  /* Display errors in the form */
+  const displayError = ( message ) => {
+    setError( message );
+    setTimeout(()=>{
+      setError('');
+    }, 1000);
+  }
+
+  /* Clears the form after successful addition of new task */
+  const clearForm = () => {
+    setTask('');
+  }
+
+  const onAddTaskEvent = (e) => {
+    e.preventDefault();
+    console.log(tasks);
+    console.log( task );
+    
+    // Validation for empty and duplicate inputs
+    if( task === '' || tasks.some( item => item.name.toLowerCase() === task.toLowerCase() ) ){
+      displayError('Invalid Input.');
+    }else{
+      dispatch({ type: 'ADD_TASK', payload: { id: uuidv4(), name: task, status: 'todo' } });
+      clearForm();
+    }
+  }
+
   return (
-    <div>TodoForm</div>
+    <React.Fragment>
+      <form>
+        <InputStyled 
+          value={task} 
+          onChange={e => setTask(e.target.value)} 
+          placeholder='Input task here..'
+        ></InputStyled>
+
+        <Button 
+          onClick={ onAddTaskEvent } >
+            Add Task
+        </Button>
+
+        <p>
+          <small>
+            { error }
+          </small>
+        </p>
+      </form>
+    </React.Fragment>
   )
 }
 
