@@ -6,7 +6,7 @@ import TodoForm from './components/TodoForm';
 const initialState = {
   items: [
     { id: 1, name: "Wake up", status: "todo" },
-    { id: 2, name: "Take a bath", status: "inprogress" },
+    { id: 2, name: "Take a bath", status: "todo" },
     { id: 3, name: "Eat", status: "completed" },
   ]
 };
@@ -17,6 +17,8 @@ const todoReducer = ( state, action ) => {
       return { ...state, items: [ ...state.items, action.payload ] }
     case 'REMOVE_TASK':
       return { ...state, items: state.items.filter( item => item.id != action.payload.id ) }
+    case 'MARK_AS_DONE':
+      return { ...state, items: state.items.map( item => { if(item.id === action.payload.id){ item.status = 'completed'; } return item; })} 
     default:
       return state;
   }

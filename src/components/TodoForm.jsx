@@ -5,7 +5,7 @@ import InputStyled from "./styled/Input.styled";
 import Button from "./styled/Button.styled";
 
 const TodoForm = ({ tasks, dispatch }) => {
-  const [ task, setTask ] = useState();
+  const [ task, setTask ] = useState('');
   const [ error, setError ] = useState('');
 
   /* Display errors in the form */
@@ -23,8 +23,11 @@ const TodoForm = ({ tasks, dispatch }) => {
 
   const onAddTaskEvent = (e) => {
     e.preventDefault();
-
-    if( tasks.some( task => task.name === task ) || task === '' ){
+    console.log(tasks);
+    console.log( task );
+    
+    // Validation for empty and duplicate inputs
+    if( task === '' || tasks.some( item => item.name.toLowerCase() === task.toLowerCase() ) ){
       displayError('Invalid Input.');
     }else{
       dispatch({ type: 'ADD_TASK', payload: { id: uuidv4(), name: task, status: 'todo' } });
