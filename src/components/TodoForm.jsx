@@ -8,6 +8,7 @@ const TodoForm = ({ tasks, dispatch }) => {
   const [ task, setTask ] = useState();
   const [ error, setError ] = useState('');
 
+  /* Display errors in the form */
   const displayError = ( message ) => {
     setError( message );
     setTimeout(()=>{
@@ -15,6 +16,7 @@ const TodoForm = ({ tasks, dispatch }) => {
     }, 1000);
   }
 
+  /* Clears the form after successful addition of new task */
   const clearForm = () => {
     setTask('');
   }
